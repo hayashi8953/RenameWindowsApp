@@ -5,6 +5,10 @@
 ②編集ボタンを押すと、選択した投稿文の本文、本文の種類、強調表示の有無を変更できます
 強調表示は1or0で1にしているものは強制的に上の行に表示されます。それ以外の行は新しいものが上に表示され、古いものほど下に表示されます。
 
+Databaseのユーザーネーム及びパスワードは以下の2つに入力する必要があります
+src.main.resource.application.properties
+src.main.java.com.example.diary.diary_Sql.DiaryConfig.java
+
 開発環境
 IDE visual studio code 1.89.1
 
