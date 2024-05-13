@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import com.example.diary.diary_Models.DiaryDataModel;
 
+//  マッパークラス
 public class DiaryRowMapper implements RowMapper<DiaryDataModel>{
     @Override
     public DiaryDataModel mapRow(ResultSet rs, int rowNum) throws SQLException {

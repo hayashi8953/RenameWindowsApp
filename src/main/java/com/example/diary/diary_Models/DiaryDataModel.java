@@ -7,9 +7,12 @@ import org.springframework.stereotype.Component;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+//  エンティティモデルクラス
 @Entity
 @Component
 public class DiaryDataModel {
+
+    //  各種保持するフィールド
     @Id
     private Long id;
     private String tagString;
@@ -17,6 +20,7 @@ public class DiaryDataModel {
     private LocalDateTime dateTime;
     private Integer emphasis;
 
+    //  ゲッターセッター
     public void setId(Long id){
         this.id = id;
     }
@@ -48,15 +52,19 @@ public class DiaryDataModel {
         return emphasis;
     }
 
+    //  コンストラクタ
     public DiaryDataModel(){
-        
     }
+
+    //  Id以外を引数にとるコンストラクタ
     public DiaryDataModel(String tag, String main, LocalDateTime date, int emphasis){
         this.tagString = tag;
         this.mainString = main;
         this.dateTime = date;
         this.emphasis = emphasis;
     }
+
+    //  全てのフィールドをString戻り値で返す
     public String getAllString(){
 
         StringBuilder sb = new StringBuilder();
