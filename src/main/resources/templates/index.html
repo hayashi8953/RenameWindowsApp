@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/diary.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>日々の記録</title>
+</head>
+<body>
+    <header>
+        <h1>日々の記録</h1>
+    </header>
+    <form action="/insert" method="POST">
+        <!-- 入力フォーム -->
+        <label for="mainString">内容:</label>
+        <input type="text" id="name" name="mainString" required minlength="1" maxlength="200" size="100" />
+        <p></p>
+        <!-- リストボックス -->
+        <label>項目:</label>
+        <select name="tagString">
+            <option value="memo">メモ</option>
+            <option value="meal">食事</option>
+            <option value="exercise">運動</option>
+            <option value="sleep">睡眠</option>
+            <option value="hobby">趣味</option>
+        </select>
+        <!-- ドロップダウンメニュー -->
+        <label>強調表示:</label>
+        <select name="emphasis">
+            <option value=0>強調無し</option>
+            <option value=1>強調表示</option>
+        </select>
+        <input type="submit" value="送信する">
+    </form>
+    <main>
+        <div class="main">
+            <table>
+                <thread>
+                    <tr>
+                        <th>項目</th>
+                        <th>内容</th>
+                        <th>日時</th>
+                        <th>強調</th>
+                        <th>編集</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    <tr th:each="sample : ${samples}">
+                        <td th:text="${sample.tagString}"></td>
+                        <td th:text="${sample.mainString}"></td>
+                        <td th:text="${sample.dateTime}"></td>
+                        <td th:text="${sample.emphasis}"></td>
+                        <td>
+                            <a th:href="@{/edit/{Id}(Id=${sample.Id})}">編集</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

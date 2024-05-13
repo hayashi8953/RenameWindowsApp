@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link th:href="@{/css/diary.css}" rel="stylesheet" type="text/css" />
+    <meta charset="UTF-8">
+    <title>日々の記録</title>
+</head>
+<body>
+    <header>
+        <h1>日々の記録</h1>
+    </header>
+    <form action="/update" method="POST">
+        <!-- 入力フォーム -->
+        <label for="mainString">内容:</label>
+        <input type="text" id="name" name="mainString" required minlength="1" maxlength="200" size="100" th:value="${sample.mainString}"/>
+        <p></p>
+        <!-- リストボックス -->
+        <label>項目:</label>
+        <select name="tagString">
+            <option value="memo">メモ</option>
+            <option value="meal">食事</option>
+            <option value="exercise">運動</option>
+            <option value="sleep">睡眠</option>
+            <option value="hobby">趣味</option>
+        </select>
+        <!-- ドロップダウンメニュー -->
+        <label>強調表示:</label>
+        <select name="emphasis">
+            <option value=0>強調無し</option>
+            <option value=1>強調表示</option>
+        </select>
+        <!-- 番号 -->
+        <label>Id:</label>
+        <input type="text" name="id" size="3" th:value="${sample.id}" readonly/>
+        <!-- 送信ボタン -->
+        <input type="submit" value="送信する">
+    </form>
+</body>
+</html>
