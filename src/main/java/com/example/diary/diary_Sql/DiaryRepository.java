@@ -20,8 +20,8 @@ public class DiaryRepository {
     //  インサート文を行う
     public void insert(DiaryDataModel ddm) {
         System.out.println("DiaryRepository.insertを通過");
-        jdbcTemplate.update("INSERT INTO MyDiary (tagString, mainString, dateTime, emphasis) VALUES (?, ?, ?, ?)",
-            ddm.getTagString(), ddm.getMainString(), ddm.getDateTime(), ddm.getEmphasis());
+        jdbcTemplate.update("INSERT INTO MyDiary (tagType, mainString, dateTime, emphasis) VALUES (?, ?, ?, ?)",
+            ddm.getTagType().getValue(), ddm.getMainString(), ddm.getDateTime(), ddm.getEmphasis());
         System.out.println("insert完了");
     }
 
@@ -29,8 +29,8 @@ public class DiaryRepository {
     public void update(DiaryDataModel ddm){
         System.out.println("DiaryRepository.updateを通過");
         System.out.println(ddm.getAllString());
-        jdbcTemplate.update("UPDATE MyDiary SET tagString = ?, mainString = ?, emphasis = ? WHERE Id = ?",
-            ddm.getTagString(), ddm.getMainString(), ddm.getEmphasis(), ddm.getId());
+        jdbcTemplate.update("UPDATE MyDiary SET tagType = ?, mainString = ?, emphasis = ? WHERE Id = ?",
+            ddm.getTagType().getValue(), ddm.getMainString(), ddm.getEmphasis(), ddm.getId());
         System.out.println("update完了");
     }
 

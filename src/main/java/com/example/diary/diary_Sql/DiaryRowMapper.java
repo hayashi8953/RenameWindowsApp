@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import com.example.diary.diary_Models.DiaryDataModel;
+import com.example.diary.diary_Models.TagType;
 
 //  マッパークラス
 public class DiaryRowMapper implements RowMapper<DiaryDataModel>{
@@ -12,10 +13,19 @@ public class DiaryRowMapper implements RowMapper<DiaryDataModel>{
         DiaryDataModel ddm = new DiaryDataModel();
 
         ddm.setId(rs.getLong("Id"));
-        ddm.setTagString(rs.getString("tagString"));
+        ddm.setTagType(stringToTagType(rs.getString("tagType")));
         ddm.setMainString(rs.getString("mainString"));
         ddm.setDateTime(rs.getTimestamp("dateTime").toLocalDateTime());
         ddm.setEmphasis(rs.getInt("emphasis"));
         return ddm;
+    }
+    public TagType stringToTagType(String str) throws IllegalArgumentException{
+        for (TagType ty : TagType.values()) {
+            if (ty.getValue().equals(str)) {
+                return ty;
+            }
+        }
+        throw new IllegalArgumentException("Invalid value: " + str);
+
     }
 }

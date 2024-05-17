@@ -15,7 +15,7 @@ public class DiaryDataModel {
     //  各種保持するフィールド
     @Id
     private Long id;
-    private String tagString;
+    private TagType tagType;
     private String mainString;
     private LocalDateTime dateTime;
     private Integer emphasis;
@@ -24,8 +24,8 @@ public class DiaryDataModel {
     public void setId(Long id){
         this.id = id;
     }
-    public void setTagString(String tagString){
-        this.tagString = tagString;
+    public void setTagType(TagType tagType){
+        this.tagType = tagType;
     }
     public void setMainString(String mainString){
         this.mainString = mainString;
@@ -39,8 +39,8 @@ public class DiaryDataModel {
     public Long getId(){
         return id;
     }
-    public String getTagString(){
-        return tagString;
+    public TagType getTagType(){
+        return tagType;
     }
     public String getMainString(){
         return mainString;
@@ -57,8 +57,8 @@ public class DiaryDataModel {
     }
 
     //  Id以外を引数にとるコンストラクタ
-    public DiaryDataModel(String tag, String main, LocalDateTime date, int emphasis){
-        this.tagString = tag;
+    public DiaryDataModel(TagType tag, String main, LocalDateTime date, int emphasis){
+        this.tagType = tag;
         this.mainString = main;
         this.dateTime = date;
         this.emphasis = emphasis;
@@ -72,7 +72,7 @@ public class DiaryDataModel {
         sb.append(", ");
         sb.append(mainString);
         sb.append(", ");
-        sb.append(tagString);
+        sb.append(tagType);
         sb.append(", ");
         sb.append(dateTime == null ? "dateTimeが空です" : dateTime.toString());
         sb.append(", ");

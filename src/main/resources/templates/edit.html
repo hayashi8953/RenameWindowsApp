@@ -16,12 +16,8 @@
         <p></p>
         <!-- リストボックス -->
         <label>項目:</label>
-        <select name="tagString">
-            <option value="memo">メモ</option>
-            <option value="meal">食事</option>
-            <option value="exercise">運動</option>
-            <option value="sleep">睡眠</option>
-            <option value="hobby">趣味</option>
+        <select name="tagType">
+            <option th:each="tagType : ${tagTypes}" th:value="${tagType}" th:text="${tagType.value}"></option>
         </select>
         <!-- ドロップダウンメニュー -->
         <label>強調表示:</label>

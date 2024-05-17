@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import com.example.diary.diary_Sql.DiaryService;
 import com.example.diary.diary_Models.DiaryDataModel;
+import com.example.diary.diary_Models.TagType;
 
 //  コントローラークラス
 @Controller
@@ -22,6 +23,11 @@ public class DiaryController {
         //  データベースから取り出したデータを送る
         model.addAttribute("samples", diaryService.exeSelectAll());
         return "/index";
+    }
+
+    @ModelAttribute("tagTypes")
+    public TagType[] getTagTypes() {
+        return TagType.values();
     }
 
     //  インサート文を送るページ
