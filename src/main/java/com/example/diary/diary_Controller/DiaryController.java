@@ -25,6 +25,7 @@ public class DiaryController {
         return "/index";
     }
 
+    //  htmlのselectタグにenum情報を送る
     @ModelAttribute("tagTypes")
     public TagType[] getTagTypes() {
         return TagType.values();
@@ -32,14 +33,9 @@ public class DiaryController {
 
     //  インサート文を送るページ
     @PostMapping("/insert")
-    public String submitForm(@ModelAttribute DiaryDataModel demoDataModel, Model model) {
-        //  インスタンスしたクラスに入力された情報を入れ込む
-        DiaryDataModel ddm = new DiaryDataModel();
-        ddm = demoDataModel;
+    public String submitForm(@ModelAttribute DiaryDataModel ddm, Model model) {
         //  インサートを行う
         ddm = diaryService.exeInsert(ddm);
-        // ビューへの受け渡し
-        model.addAttribute("samples", diaryService.exeSelectAll());
         return "redirect:/";
     }
     //  編集ページに飛ぶ
@@ -52,12 +48,9 @@ public class DiaryController {
     }
     //  編集を行うupdateページ
     @PostMapping("/update")
-    public String postMethodName(@ModelAttribute DiaryDataModel demoDiaryDataModel, Model model) {
-        DiaryDataModel ddm = new DiaryDataModel();
-        ddm = demoDiaryDataModel;
+    public String postMethodName(@ModelAttribute DiaryDataModel ddm, Model model) {
         //  updateに使う情報を送る
         diaryService.exeUpdate(ddm);
-        model.addAttribute("samples", diaryService.exeSelectAll());
         return "redirect:/";
     }
     

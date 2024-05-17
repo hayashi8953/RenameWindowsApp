@@ -65,7 +65,7 @@ public class DiaryDataModel {
     }
 
     //  全てのフィールドをString戻り値で返す
-    public String getAllString(){
+    public String getAllString() throws NullPointerException{
 
         StringBuilder sb = new StringBuilder();
         sb.append(id == null ? "idが空です" : id);
