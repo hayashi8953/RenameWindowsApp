@@ -1,6 +1,6 @@
 package com.example.diary.diary_Models;
 
-public enum TagString {
+public enum TagType {
     MEMO("メモ"),
     MEAL("食事"),
     EXERCISE("運動"),
@@ -8,7 +8,7 @@ public enum TagString {
     HOBBY("趣味");
 
     private String value;
-    TagString(String value){
+    TagType(String value){
         this.value = value;
     }
     public String getValue() {
