@@ -17,17 +17,17 @@ public class DiarySelectRepository extends BaseRepository{
     //  Idを検索して一件だけ取り出すセレクト文
     public DiaryDataModel selectOfOne(Long num) throws DataAccessException, IllegalArgumentException{
         DiaryRowMapper rowMapper = new DiaryRowMapper();
-        System.out.println("DiaryRepository.selectOfOneを通過");
-        DiaryDataModel ddm = jdbcTemplate.queryForObject("SELECT * FROM MyDiary WHERE Id = ?", rowMapper, num.intValue());
+        System.out.println("DiarySelectRepository.selectOfOneを通過");
+        DiaryDataModel ddm = jdbcTemplate.queryForObject("SELECT * FROM MyDiary WHERE Id = ?", rowMapper, num);
         System.out.println("selectOfOne完了");
         return ddm;
     }
     
-    //  全件を取り出すセレクト文
-    public List<DiaryDataModel> selectAll() throws DataAccessException, IllegalArgumentException{
+    //  直近30日を取り出すセレクト文
+    public List<DiaryDataModel> select30days() throws DataAccessException, IllegalArgumentException{
         DiaryRowMapper rowMapper = new DiaryRowMapper();
-        System.out.println("DiaryRepository.selectAllを通過");
-        List<DiaryDataModel> list = jdbcTemplate.query("SELECT * FROM MyDiary ORDER BY emphasis DESC, Id DESC",rowMapper);
+        System.out.println("DiarySelectRepository.select30daysを通過");
+        List<DiaryDataModel> list = jdbcTemplate.query("SELECT * FROM MyDiary WHERE dateTime >= NOW() - INTERVAL 30 DAY ORDER BY emphasis DESC, Id DESC",rowMapper);
         System.out.println("selectAll完了");
         return list;
     }

@@ -3,8 +3,6 @@ package com.example.diary.diary_Sql;
 import java.time.LocalDateTime;
 
 import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -43,13 +41,17 @@ public class DiaryService {
         dir.update(ddm);
     }
 
+    public void exeDelete(Long num) throws DataAccessException{
+        dir.delete(num);
+    }
+
     //  リポジトリクラスの一件セレクト文を起動する
     public DiaryDataModel exeSelectOfOne(Long num) throws DataAccessException{
         return dsr.selectOfOne(num);
     }
 
-    //  リポジトリクラスの全件セレクト文を起動する
-    public List<DiaryDataModel> exeSelectAll() throws DataAccessException{
-        return dsr.selectAll();
+    //  リポジトリクラスの直近30日のセレクト文を起動する
+    public List<DiaryDataModel> exeSelect30days() throws DataAccessException{
+        return dsr.select30days();
     }
 }

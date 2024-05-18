@@ -1,15 +1,19 @@
 package com.example.diary.diary_Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import com.example.diary.diary_Sql.DiaryService;
 import com.example.diary.diary_Models.DiaryDataModel;
 import com.example.diary.diary_Models.TagType;
+
 
 //  コントローラークラス
 @Controller
@@ -21,16 +25,14 @@ public class DiaryController {
     @GetMapping("/")
     public String diary(Model model) {
         //  データベースから取り出したデータを送る
-        model.addAttribute("samples", diaryService.exeSelectAll());
+        model.addAttribute("samples", diaryService.exeSelect30days());
         return "/index";
     }
-
     //  htmlのselectタグにenum情報を送る
     @ModelAttribute("tagTypes")
     public TagType[] getTagTypes() {
         return TagType.values();
     }
-
     //  インサート文を送るページ
     @PostMapping("/insert")
     public String submitForm(@ModelAttribute DiaryDataModel ddm, Model model) {
@@ -53,5 +55,13 @@ public class DiaryController {
         diaryService.exeUpdate(ddm);
         return "redirect:/";
     }
-    
+    //  削除を行うdeleteページ
+    //  javascriptから値を受け取る(json形式)
+    @ResponseBody
+    @PostMapping("/delete")
+    public ResponseEntity<String> postMethodName(@RequestBody String id) {
+        Long parseLong = Long.parseLong(id);
+        diaryService.exeDelete(parseLong);
+        return ResponseEntity.ok().body("deleteは正常に終了しました");
+    }
 }

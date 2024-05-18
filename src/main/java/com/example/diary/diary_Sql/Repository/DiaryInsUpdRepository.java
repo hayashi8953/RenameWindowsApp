@@ -16,8 +16,7 @@ public class DiaryInsUpdRepository extends BaseRepository{
 
     //  インサート文を行う
     public void insert(DiaryDataModel ddm) throws DataAccessException, NullPointerException{
-        System.out.println("DiaryRepository.insertを通過");
-        System.out.println(ddm.getAllString());
+        System.out.printf("DiaryInsUpdRepository.insertを通過%n%s", ddm.getAllString());
         jdbcTemplate.update("INSERT INTO MyDiary (tagType, mainString, dateTime, emphasis) VALUES (?, ?, ?, ?)",
             ddm.getTagType().getValue(), ddm.getMainString(), ddm.getDateTime(), ddm.getEmphasis());
         System.out.println("insert完了");
@@ -25,11 +24,17 @@ public class DiaryInsUpdRepository extends BaseRepository{
 
     //  アップデート文を行う
     public void update(DiaryDataModel ddm) throws DataAccessException, NullPointerException{
-        System.out.println("DiaryRepository.updateを通過");
-        System.out.println(ddm.getAllString());
+        System.out.printf("DiaryInsUpdRepository.updateを通過%n%s", ddm.getAllString());
         jdbcTemplate.update("UPDATE MyDiary SET tagType = ?, mainString = ?, emphasis = ? WHERE Id = ?",
             ddm.getTagType().getValue(), ddm.getMainString(), ddm.getEmphasis(), ddm.getId());
         System.out.println("update完了");
+    }
+
+    //  デリート文を行う
+    public void delete(Long num) throws DataAccessException{
+        System.out.println("DiaryRepository.deleteを通過");
+        jdbcTemplate.update("DELETE FROM MyDiary WHERE Id = ?", num);
+        System.out.println("delete完了");
     }
     
 }
