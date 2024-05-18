@@ -9,19 +9,23 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import com.example.diary.diary_Models.DiaryDataModel;;
+import com.example.diary.diary_Models.DiaryDataModel;
+import com.example.diary.diary_Sql.Repository.DiaryInsUpdRepository;
+import com.example.diary.diary_Sql.Repository.DiarySelectRepository;
 
 //  Serviceクラス
 @Service
 public class DiaryService {
-    @Autowired
-    DiaryRepository dm;
+
+    private final DiaryInsUpdRepository dir;
+    private final DiarySelectRepository dsr;
 
     //  コンストラクタ　ここでjdbcにデータベースと接続する情報を入れる
     public DiaryService(){
         DataSource dataSource = DiaryConfig.dataSource();
         JdbcTemplate jdbcTemplate = DiaryConfig.jdbcTemplate(dataSource);
-        dm = new DiaryRepository(jdbcTemplate);
+        dir = new DiaryInsUpdRepository(jdbcTemplate);
+        dsr = new DiarySelectRepository(jdbcTemplate);
     }
 
     //  受け取ったモデルクラスを調整して、
@@ -30,22 +34,22 @@ public class DiaryService {
         LocalDateTime now = LocalDateTime.now();
         ddm.setDateTime(now);
         System.out.println("Service.exeInsertを通過");
-        dm.insert(ddm);
+        dir.insert(ddm);
         return ddm;
     }
 
     //  リポジトリクラスのアップデートメソッドを起動する
     public void exeUpdate(DiaryDataModel ddm) throws DataAccessException{
-        dm.update(ddm);
+        dir.update(ddm);
     }
 
     //  リポジトリクラスの一件セレクト文を起動する
     public DiaryDataModel exeSelectOfOne(Long num) throws DataAccessException{
-        return dm.selectOfOne(num);
+        return dsr.selectOfOne(num);
     }
 
     //  リポジトリクラスの全件セレクト文を起動する
     public List<DiaryDataModel> exeSelectAll() throws DataAccessException{
-        return dm.selectAll();
+        return dsr.selectAll();
     }
 }

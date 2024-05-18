@@ -1,6 +1,7 @@
 package com.example.diary.diary_Models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.stereotype.Component;
 
@@ -62,6 +63,17 @@ public class DiaryDataModel {
         this.mainString = main;
         this.dateTime = date;
         this.emphasis = emphasis;
+    }
+
+    //  dateTimeをFormatして返す
+    public String getFormattedDateTime(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return this.dateTime.format(dtf);
+    }
+
+    //  emphasisが1なら有、0なら無
+    public String getFormattedEmphasis(){
+        return this.emphasis == 1 ? "有" : "無";
     }
 
     //  全てのフィールドをString戻り値で返す
