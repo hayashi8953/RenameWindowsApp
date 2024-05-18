@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link th:href="@{/css/diary.css}" rel="stylesheet" type="text/css" />
 
+<head>
+    <link th:href="@{/css/diary.css}" rel="stylesheet" />
     <meta charset="UTF-8">
     <title>日々の記録</title>
 </head>
+
 <body>
     <header>
         <h1>日々の記録</h1>
@@ -17,7 +18,7 @@
         <p></p>
         <!-- リストボックス -->
         <label>項目:</label>
-            <select name="tagType">
+        <select name="tagType">
             <option th:each="tagType : ${tagTypes}" th:value="${tagType}" th:text="${tagType.value}"></option>
         </select>
         <!-- ドロップダウンメニュー -->
@@ -29,32 +30,28 @@
         <input type="submit" value="送信する">
     </form>
     <main>
-        <div class="main">
-            <table>
-                <thread>
-                    <tr>
-                        <th>項目</th>
-                        <th>内容</th>
-                        <th>日時</th>
-                        <th>強調</th>
-                        <th>編集</th>
-                    </tr>
-                </thread>
-                <tbody>
-                    <tr th:each="sample : ${samples}">
-                        <td th:text="${sample.tagType}"></td>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>内容</th>
+                <th>日時</th>
+                <th>強調</th>
+                <th>編集</th>
+            </tr>
+
+            <tbody>
+                <tr th:each="sample : ${samples}" th:class="${sample.emphasis == 1} ? 'emphasisColor' : 'nonEmphasisColor'">
+                    
+                        <td th:text="${sample.tagType.getValue()}"></td>
                         <td th:text="${sample.mainString}"></td>
-                        <td th:text="${sample.dateTime}"></td>
-                        <td th:text="${sample.emphasis}"></td>
+                        <td th:text="${sample.getFormattedDateTime()}"></td>
+                        <td th:text="${sample.getFormattedEmphasis()}"></td>
                         <td>
                             <a th:href="@{/edit/{Id}(Id=${sample.Id})}">編集</a>
                         </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                </tr>
+            </tbody>
+        </table>
     </main>
-
 </body>
-
 </html>

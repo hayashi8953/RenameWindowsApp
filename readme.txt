@@ -19,7 +19,7 @@ MySqlバージョン8.4
 Database名はmy_database
 以下はCreateTable文
 CREATE TABLE MyDiary (Id INT PRIMARY KEY AUTO_INCREMENT, 
-    tagString VARCHAR(10) NOT NULL,
+    tagType VARCHAR(10) NOT NULL,
     mainString VARCHAR(200) NOT NULL,
     dateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     emphasis INT);

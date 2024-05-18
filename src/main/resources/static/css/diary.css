@@ -1,3 +1,11 @@
+body {
+    background-color: darkgray;
+}
+h1{
+    text-align: center;
+    vertical-align: auto;
+}
+
 /* テーブル (本文内)のレイアウト */
 main table {
     /* テーブルの上下余白 (ボックス外)を20px、 左右余白 (ボックス外)を40pxに設定 */
@@ -8,7 +16,8 @@ main table {
     width: calc(100% - 80px);
 }
 
-main table th, main table td {
+main table th,
+main table td {
     /* テーブルの枠線を設定 */
     border: solid 1px black;
     /* テキストの位置を上下中央揃えに設定 */
@@ -17,16 +26,28 @@ main table th, main table td {
 }
 
 main table th {
-    /* テーブルのタイトル行の上下余白 (ボックス内)を5px、 左右余白 (ボックス内)を50pxに設定 */
-    padding: 1px 3px;
-    /* 背景色を紺、文字色を白に設定 */
-    background: #000066;
+    /* 文字の色 */
     color: white;
+    /* 背景 */
+    background-color: rgb(67, 67, 248);
 }
 
 main table td {
+    /* テーブルのタイトル行の上下余白 (ボックス内)を5px、 左右余白 (ボックス内)を50pxに設定 */
+    padding: 1px 3px;
     /* テーブルの各行の上下余白 (ボックス内)を15px、 左右余白 (ボックス内)を20pxに設定 */
     padding: 1px 3px;
-    /* 背景色を薄い青に設定 */
-    background: #8EB8FF;
+    /* 文字の色 */
+    color: black;
+
+}
+
+.emphasisColor {
+    /* 背景 */
+    background-color: rgb(177, 95, 121);
+}
+
+.nonEmphasisColor {
+    /* 背景 */
+    background: #5c8ee5;
 }
