@@ -46,4 +46,15 @@ public class DiarySelectRepository extends BaseRepository {
         System.out.println("selectAll完了");
         return list;
     }
+
+    // 全件を取り出す引数在りのセレクト文
+    public List<DiaryDataModel> selectAll(String tagType) throws DataAccessException, IllegalArgumentException {
+        DiaryRowMapper rowMapper = new DiaryRowMapper();
+        System.out.println("DiarySelectRepository.selectAllを通過");
+        List<DiaryDataModel> list = jdbcTemplate.query(
+                "SELECT * FROM MyDiary WHERE tagType = ? ORDER BY emphasis DESC, Id DESC",
+                rowMapper, tagType);
+        System.out.println("selectAll完了");
+        return list;
+    }
 }

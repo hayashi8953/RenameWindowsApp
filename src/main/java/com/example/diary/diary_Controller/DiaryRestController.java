@@ -1,9 +1,9 @@
 package com.example.diary.diary_Controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.diary.diary_Sql.DiaryService;
@@ -19,7 +19,6 @@ public class DiaryRestController {
 
     //  削除を行うdeleteページ
     //  javascriptから値を受け取る(json形式, HTTPレスポンスボディ)
-    @ResponseBody
     @PostMapping("/delete")
     public ResponseEntity<String> postMethodName(@RequestBody String id) {
         Long parseLong = Long.parseLong(id);

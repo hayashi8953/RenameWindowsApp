@@ -1,5 +1,7 @@
 package com.example.diary.diary_Controller;
 
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,50 +11,70 @@ import org.springframework.ui.Model;
 import com.example.diary.diary_Sql.DiaryService;
 import com.example.diary.diary_Models.DiaryDataModel;
 import com.example.diary.diary_Models.TagType;
+import org.springframework.web.bind.annotation.RequestBody;
 
 //  コントローラークラス
 @Controller
 public class DiaryController {
 
-    //  Serviceクラス
+    // Serviceクラス
     DiaryService diaryService;
 
-    public DiaryController(DiaryService diaryService){
+    public DiaryController(DiaryService diaryService) {
         this.diaryService = diaryService;
     }
 
-    //  indexページ
+    // indexページ
     @GetMapping("/")
     public String diary(Model model) {
-        //  データベースから取り出したデータを送る
-        model.addAttribute("samples", diaryService.exeSelect30days());
+        // データベースから取り出したデータを送る
+        model.addAttribute("samples", diaryService.exeSelectAll());
         return "/index";
     }
-    //  htmlのselectタグにenum情報を送る
+
+    // htmlのselectタグにenum情報を送る
     @ModelAttribute("tagTypes")
     public TagType[] getTagTypes() {
         return TagType.values();
     }
-    //  インサート文を送るページ
+
+    // インサート文を送るページ
     @PostMapping("/insert")
     public String submitForm(@ModelAttribute DiaryDataModel ddm, Model model) {
-        //  インサートを行う
+        // インサートを行う
         ddm = diaryService.exeInsert(ddm);
         return "redirect:/";
     }
-    //  編集ページに飛ぶ
+
+    // 編集ページに飛ぶ
     @GetMapping("/edit/{Id}")
     public String edit(@PathVariable("Id") Long id, Model model) {
-        //  選択されたIdのみを取り出してそれを編集ページに送る
+        // 選択されたIdのみを取り出してそれを編集ページに送る
         DiaryDataModel ddm = diaryService.exeSelectOfOne(id);
         model.addAttribute("sample", ddm);
         return "/edit";
     }
-    //  編集を行うupdateページ
+
+    // 編集を行うupdateページ
     @PostMapping("/update")
-    public String postMethodName(@ModelAttribute DiaryDataModel ddm, Model model) {
-        //  updateに使う情報を送る
+    public String updatePage(@ModelAttribute DiaryDataModel ddm, Model model) {
+        // updateに使う情報を送る
         diaryService.exeUpdate(ddm);
         return "redirect:/";
     }
+
+    // 検索を行うsearchページ
+    @PostMapping("/search")
+    public String searchPage(@RequestBody String tagType, Model model) {
+        try {
+            // データベースから取り出したデータを送る
+            model.addAttribute("samples", diaryService.exeSelectAll(tagType));
+            return "/index";
+        } catch (UnsupportedEncodingException e) {
+            return "error";
+        } catch (IllegalArgumentException e) {
+            return "error";
+        }
+    }
+
 }

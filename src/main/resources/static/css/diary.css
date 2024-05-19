@@ -6,10 +6,8 @@ h1{
     vertical-align: auto;
 }
 
-.label-right {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 40px;
+.content-left {
+    margin-left: 40px;
 }
 
 /* テーブル (本文内)のレイアウト */

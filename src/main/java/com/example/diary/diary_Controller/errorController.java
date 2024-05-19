@@ -2,6 +2,9 @@ package com.example.diary.diary_Controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.io.UnsupportedEncodingException;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.ui.Model;
 
@@ -24,6 +27,12 @@ public class errorController {
     @ExceptionHandler(IllegalArgumentException.class)
     public String IllegalArgumentExceptionHandler(IllegalArgumentException e, Model model) {
         model.addAttribute("exception", "IllegalArgumentException");
+        model.addAttribute("errorMessage", e.getMessage());
+        return "error";
+    }
+    @ExceptionHandler(UnsupportedEncodingException.class)
+    public String UnsupportedEncodingExceptionHandler(UnsupportedEncodingException e, Model model) {
+        model.addAttribute("exception", "UnsupportedEncodingException");
         model.addAttribute("errorMessage", e.getMessage());
         return "error";
     }

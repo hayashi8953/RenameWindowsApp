@@ -30,8 +30,18 @@
         </select>
         <input type="submit" value="送信する">
     </form>
+
     <main>
-        <label class="label-right">直近30日を表示</label>
+        <form action="/search" method="POST" accept-charset="UTF-8">
+            <div class="content-left">
+                <label>検索:</label>
+                <select name="tagType">
+                    <option th:each="tagType : ${tagTypes}" th:value="${tagType.getValue()}" th:text="${tagType.value}"></option>
+                </select>
+                <button type="submit">検索</button>
+            </div>
+        </form>
+
         <table>
             <tr>
                 <th>項目</th>
@@ -42,20 +52,23 @@
             </tr>
 
             <tbody>
-                <tr th:each="sample : ${samples}" th:class="${sample.emphasis == 1} ? 'emphasisColor' : 'nonEmphasisColor'">
-                    
-                        <td th:text="${sample.tagType.getValue()}"></td>
-                        <td th:text="${sample.mainString}"></td>
-                        <td th:text="${sample.getFormattedDateTime()}"></td>
-                        <td>
-                            <a th:href="@{/edit/{Id}(Id=${sample.Id})}">編集</a>
-                        </td>
-                        <td>
-                            <button th:sample-id="${sample.Id}" onclick="deleteConfirm(this.getAttribute('sample-id'))">削除</button>
-                        </td>
+                <tr th:each="sample : ${samples}"
+                    th:class="${sample.emphasis == 1} ? 'emphasisColor' : 'nonEmphasisColor'">
+
+                    <td th:text="${sample.tagType.getValue()}"></td>
+                    <td th:text="${sample.mainString}"></td>
+                    <td th:text="${sample.getFormattedDateTime()}"></td>
+                    <td>
+                        <a th:href="@{/edit/{Id}(Id=${sample.Id})}">編集</a>
+                    </td>
+                    <td>
+                        <button th:sample-id="${sample.Id}"
+                            onclick="deleteConfirm(this.getAttribute('sample-id'))">削除</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </main>
 </body>
+
 </html>
