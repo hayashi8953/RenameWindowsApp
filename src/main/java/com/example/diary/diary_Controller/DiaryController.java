@@ -1,25 +1,25 @@
 package com.example.diary.diary_Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.ui.Model;
 import com.example.diary.diary_Sql.DiaryService;
 import com.example.diary.diary_Models.DiaryDataModel;
 import com.example.diary.diary_Models.TagType;
 
-
 //  コントローラークラス
 @Controller
 public class DiaryController {
-    @Autowired
+
+    //  Serviceクラス
     DiaryService diaryService;
+
+    public DiaryController(DiaryService diaryService){
+        this.diaryService = diaryService;
+    }
 
     //  indexページ
     @GetMapping("/")
@@ -54,14 +54,5 @@ public class DiaryController {
         //  updateに使う情報を送る
         diaryService.exeUpdate(ddm);
         return "redirect:/";
-    }
-    //  削除を行うdeleteページ
-    //  javascriptから値を受け取る(json形式)
-    @ResponseBody
-    @PostMapping("/delete")
-    public ResponseEntity<String> postMethodName(@RequestBody String id) {
-        Long parseLong = Long.parseLong(id);
-        diaryService.exeDelete(parseLong);
-        return ResponseEntity.ok().body("deleteは正常に終了しました");
     }
 }

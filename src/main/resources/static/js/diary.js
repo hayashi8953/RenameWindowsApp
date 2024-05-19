@@ -11,8 +11,10 @@ function deleteConfirm(id) {
         })
         .then(response => {
             if (response.ok) {
+                //  正常にdelete出来ていた場合
                 window.location.href = '/';
             } else {
+                //  失敗した場合
                 throw new Error('サーバーに問題が発生しました。');
             }
         })

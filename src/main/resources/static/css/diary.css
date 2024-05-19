@@ -6,6 +6,12 @@ h1{
     vertical-align: auto;
 }
 
+.label-right {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
+}
+
 /* テーブル (本文内)のレイアウト */
 main table {
     /* テーブルの上下余白 (ボックス外)を20px、 左右余白 (ボックス外)を40pxに設定 */
