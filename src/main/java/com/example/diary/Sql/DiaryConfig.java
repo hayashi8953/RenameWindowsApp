@@ -15,7 +15,7 @@ public class DiaryConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/my_database");
         dataSource.setUsername("root");
-        dataSource.setPassword("EEC238XrztYs");
+        dataSource.setPassword("");
         return dataSource;
     }
 
