@@ -1,4 +1,4 @@
-package com.example.diary.diary_Models;
+package com.example.diary.Models;
 
 public enum TagType {
     MEMO("メモ"),

@@ -1,4 +1,4 @@
-package com.example.diary.diary_Controller;
+package com.example.diary.Controller;
 
 import java.io.UnsupportedEncodingException;
 
@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
-import com.example.diary.diary_Sql.DiaryService;
-import com.example.diary.diary_Models.DiaryDataModel;
-import com.example.diary.diary_Models.TagType;
+
+import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.TagType;
+import com.example.diary.Sql.DiaryService;
+
 import org.springframework.web.bind.annotation.RequestBody;
 
 //  コントローラークラス

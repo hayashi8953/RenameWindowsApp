@@ -1,4 +1,4 @@
-package com.example.diary.diary_Controller;
+package com.example.diary.Controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.diary.diary_Sql.DiaryService;
+import com.example.diary.Sql.DiaryService;
 
 @RestController
 public class DiaryRestController {

@@ -1,4 +1,4 @@
-package com.example.diary.diary_Controller;
+package com.example.diary.Controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

@@ -1,4 +1,4 @@
-package com.example.diary.diary_Sql.Repository;
+package com.example.diary.Sql.Repository;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.diary.diary_Models.DiaryDataModel;
-import com.example.diary.diary_Sql.DiaryRowMapper;
+import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Sql.DiaryRowMapper;
 
 @Repository
 public class DiarySelectRepository extends BaseRepository {

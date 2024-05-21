@@ -1,4 +1,4 @@
-package com.example.diary.diary_Models;
+package com.example.diary.Models;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

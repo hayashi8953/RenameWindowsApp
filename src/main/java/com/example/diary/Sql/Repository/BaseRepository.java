@@ -1,4 +1,4 @@
-package com.example.diary.diary_Sql.Repository;
+package com.example.diary.Sql.Repository;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 

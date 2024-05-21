@@ -1,9 +1,10 @@
-package com.example.diary.diary_Sql.Repository;
+package com.example.diary.Sql.Repository;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import com.example.diary.diary_Models.DiaryDataModel;
+
+import com.example.diary.Models.DiaryDataModel;
 
 //  Repositoryクラス
 @Repository

@@ -1,11 +1,12 @@
-package com.example.diary.diary_Sql;
+package com.example.diary.Sql;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
-import com.example.diary.diary_Models.DiaryDataModel;
-import com.example.diary.diary_Models.TagType;
+
+import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.TagType;
 
 //  マッパークラス
 public class DiaryRowMapper implements RowMapper<DiaryDataModel>{

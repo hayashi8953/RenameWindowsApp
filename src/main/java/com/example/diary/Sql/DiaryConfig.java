@@ -1,4 +1,4 @@
-package com.example.diary.diary_Sql;
+package com.example.diary.Sql;
 
 import javax.sql.DataSource;
 
@@ -15,7 +15,7 @@ public class DiaryConfig {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/my_database");
         dataSource.setUsername("root");
-        dataSource.setPassword("");
+        dataSource.setPassword("EEC238XrztYs");
         return dataSource;
     }
 

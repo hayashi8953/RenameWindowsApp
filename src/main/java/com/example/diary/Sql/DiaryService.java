@@ -1,4 +1,4 @@
-package com.example.diary.diary_Sql;
+package com.example.diary.Sql;
 
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
@@ -6,9 +6,10 @@ import java.time.LocalDateTime;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import com.example.diary.diary_Models.DiaryDataModel;
-import com.example.diary.diary_Sql.Repository.DiaryInsUpdRepository;
-import com.example.diary.diary_Sql.Repository.DiarySelectRepository;
+
+import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Sql.Repository.DiaryInsUpdRepository;
+import com.example.diary.Sql.Repository.DiarySelectRepository;
 
 //  Serviceクラス
 @Service
