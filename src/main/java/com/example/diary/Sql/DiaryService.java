@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Sql.Repository.DemoRepository;
 import com.example.diary.Sql.Repository.DiaryInsUpdRepository;
 import com.example.diary.Sql.Repository.DiarySelectRepository;
 
@@ -17,11 +18,13 @@ public class DiaryService {
 
     private final DiaryInsUpdRepository dir;
     private final DiarySelectRepository dsr;
+    private final DemoRepository dr;
 
     // コンストラクタ ここでjdbcにデータベースと接続する情報を入れる
-    public DiaryService(DiaryInsUpdRepository dir, DiarySelectRepository dsr) {
+    public DiaryService(DiaryInsUpdRepository dir, DiarySelectRepository dsr, DemoRepository dr) {
         this.dir = dir;
         this.dsr = dsr;
+        this.dr = dr;
     }
 
     // 受け取ったモデルクラスを調整して、
@@ -29,7 +32,6 @@ public class DiaryService {
     public DiaryDataModel exeInsert(DiaryDataModel ddm) throws DataAccessException {
         LocalDateTime now = LocalDateTime.now();
         ddm.setDateTime(now);
-        System.out.println("Service.exeInsertを通過");
         dir.insert(ddm);
         return ddm;
     }
