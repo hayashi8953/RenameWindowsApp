@@ -79,4 +79,11 @@ public class DiaryController {
         }
     }
 
+    // システムを終了させる
+    @GetMapping("/exit")
+    public void dairyExit() {
+        System.out.println("システムを終了します");
+        System.exit(0);
+    }
+
 }

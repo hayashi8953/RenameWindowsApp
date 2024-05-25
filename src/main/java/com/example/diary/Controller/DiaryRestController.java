@@ -1,5 +1,6 @@
 package com.example.diary.Controller;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,5 +25,6 @@ public class DiaryRestController {
         diaryService.exeDelete(parseLong);
         return ResponseEntity.ok().body("deleteは正常に終了しました");
     }
+    
 
 }
