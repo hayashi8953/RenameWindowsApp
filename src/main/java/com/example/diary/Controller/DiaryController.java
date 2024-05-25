@@ -31,7 +31,7 @@ public class DiaryController {
     public String diary(Model model) {
         // データベースから取り出したデータを送る
         model.addAttribute("samples", diaryService.exeSelectAll());
-        return "/index";
+        return "index";
     }
 
     // htmlのselectタグにenum情報を送る
@@ -54,7 +54,7 @@ public class DiaryController {
         // 選択されたIdのみを取り出してそれを編集ページに送る
         DiaryDataModel ddm = diaryService.exeSelectOfOne(id);
         model.addAttribute("sample", ddm);
-        return "/edit";
+        return "edit";
     }
 
     // 編集を行うupdateページ
@@ -71,7 +71,7 @@ public class DiaryController {
         try {
             // データベースから取り出したデータを送る
             model.addAttribute("samples", diaryService.exeSelectAll(tagType));
-            return "/index";
+            return "index";
         } catch (UnsupportedEncodingException e) {
             return "error";
         } catch (IllegalArgumentException e) {
