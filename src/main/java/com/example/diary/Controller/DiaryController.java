@@ -1,6 +1,12 @@
 package com.example.diary.Controller;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +17,12 @@ import org.springframework.ui.Model;
 
 import com.example.diary.Models.DiaryDataModel;
 import com.example.diary.Models.TagType;
+import com.example.diary.Models.SearchData;
 import com.example.diary.Sql.DiaryService;
+import com.example.diary.Utility.utilStatic;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 //  コントローラークラス
 @Controller
@@ -38,6 +47,12 @@ public class DiaryController {
     @ModelAttribute("tagTypes")
     public TagType[] getTagTypes() {
         return TagType.values();
+    }
+
+    // 検索用のselectタグにLocalDateの情報を送る
+    @ModelAttribute("searchDays")
+    public LocalDate[] getSearchDays() {
+        return utilStatic.yearDaysList();
     }
 
     // インサート文を送るページ
@@ -67,16 +82,10 @@ public class DiaryController {
 
     // 検索を行うsearchページ
     @PostMapping("/search")
-    public String searchPage(@RequestBody String tagType, Model model) {
-        try {
-            // データベースから取り出したデータを送る
-            model.addAttribute("samples", diaryService.exeSelectAll(tagType));
-            return "index";
-        } catch (UnsupportedEncodingException e) {
-            return "error";
-        } catch (IllegalArgumentException e) {
-            return "error";
-        }
+    public String searchPage(@ModelAttribute SearchData sData, Model model) {
+        // データベースから取り出したデータを送る
+        model.addAttribute("samples", diaryService.exeSelectAll(sData));
+        return "index";
     }
 
     // システムを終了させる

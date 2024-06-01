@@ -38,7 +38,10 @@
                 <select name="tagType">
                     <option th:each="tagType : ${tagTypes}" th:value="${tagType.getValue()}" th:text="${tagType.value}"></option>
                 </select>
-                <button type="submit">検索</button>
+                <select name="searchDay">
+                    <option th:each="searchDay : ${searchDays}" th:value="${searchDay}" th:text="${searchDay}"></option>
+                </select>
+                <button type="submit" name="sData">検索</button>
             </div>
         </form>
 

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.SearchData;
 import com.example.diary.Sql.DiaryRowMapper;
 
 @Repository
@@ -48,12 +49,13 @@ public class DiarySelectRepository extends BaseRepository {
     }
 
     // 全件を取り出す引数在りのセレクト文
-    public List<DiaryDataModel> selectAll(String tagType) throws DataAccessException, IllegalArgumentException {
+    public List<DiaryDataModel> selectAll(SearchData sData) throws DataAccessException, IllegalArgumentException {
         DiaryRowMapper rowMapper = new DiaryRowMapper();
         System.out.println("DiarySelectRepository.selectAllを通過");
         List<DiaryDataModel> list = jdbcTemplate.query(
-                "SELECT * FROM MyDiary WHERE tagType = ? ORDER BY emphasis DESC, Id DESC",
-                rowMapper, tagType);
+                "SELECT * FROM MyDiary WHERE tagType = ? AND dateTime >= ? AND dateTime < ?"
+                    + "ORDER BY emphasis DESC, Id DESC",
+                rowMapper, sData.getTagType(), sData.getSearchDay(), sData.getSearchLastDay());
         System.out.println("selectAll完了");
         return list;
     }

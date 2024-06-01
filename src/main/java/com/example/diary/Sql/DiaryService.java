@@ -1,6 +1,5 @@
 package com.example.diary.Sql;
 
-import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 
 import org.springframework.dao.DataAccessException;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.SearchData;
 import com.example.diary.Sql.Repository.DemoRepository;
 import com.example.diary.Sql.Repository.DiaryInsUpdRepository;
 import com.example.diary.Sql.Repository.DiarySelectRepository;
@@ -62,18 +62,8 @@ public class DiaryService {
     }
 
     // リポジトリクラスの直近30日のセレクト文を起動する
-    public List<DiaryDataModel> exeSelectAll(String tagType)
-            throws DataAccessException, UnsupportedEncodingException, IllegalArgumentException {
-        String formattedTagType = null;
-        // tagType=の文字を切り取る
-        if (tagType.startsWith("tagType=")) {
-            // 送られてきた文字列をUTF-8に変換する
-            String decodeTagType = java.net.URLDecoder.decode(tagType, "UTF-8");
-            formattedTagType = decodeTagType.substring(8);
-
-        } else {
-            throw new IllegalArgumentException("無効な値が送られました");
-        }
-        return dsr.selectAll(formattedTagType);
+    public List<DiaryDataModel> exeSelectAll(SearchData sData)
+            throws DataAccessException {
+        return dsr.selectAll(sData);
     }
 }
