@@ -14,10 +14,5 @@ springboot3.2.5
 MySqlバージョン8.4
 HSQLDBバージョン2.7.2
 
-Database名はmy_database
-以下はCreateTable文
-CREATE TABLE MyDiary (Id INT PRIMARY KEY AUTO_INCREMENT, 
-    tagType VARCHAR(10) NOT NULL,
-    mainString VARCHAR(200) NOT NULL,
-    dateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    emphasis INT);
+リリース
+https://github.com/hayashi8953/SpringBootWebDiaryApp/releases/tag/1.0.0
