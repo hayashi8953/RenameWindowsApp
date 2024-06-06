@@ -16,3 +16,5 @@ HSQLDBバージョン2.7.2
 
 リリース
 https://github.com/hayashi8953/SpringBootWebDiaryApp/releases/tag/1.0.0
+
+ローカルホストhttp://localhost:8080/
