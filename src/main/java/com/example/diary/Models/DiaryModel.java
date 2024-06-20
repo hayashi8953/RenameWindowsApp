@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 //  エンティティモデルクラス
 @Entity
 @Component
-public class DiaryDataModel {
+public class DiaryModel {
 
     //  各種保持するフィールド
     @Id
@@ -53,12 +53,8 @@ public class DiaryDataModel {
         return emphasis;
     }
 
-    //  コンストラクタ
-    public DiaryDataModel(){
-    }
-
     //  Id以外を引数にとるコンストラクタ
-    public DiaryDataModel(TagType tag, String main, LocalDateTime date, int emphasis){
+    public DiaryModel(TagType tag, String main, LocalDateTime date, int emphasis){
         this.tagType = tag;
         this.mainString = main;
         this.dateTime = date;

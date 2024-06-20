@@ -5,15 +5,15 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.DiaryModel;
 import com.example.diary.Models.TagType;
 
 //  マッパークラス
-public class DiaryRowMapper implements RowMapper<DiaryDataModel>{
+public class DiaryRowMapper implements RowMapper<DiaryModel>{
     @Override
-    public DiaryDataModel mapRow(ResultSet rs, int rowNum) throws IllegalArgumentException{
+    public DiaryModel mapRow(ResultSet rs, int rowNum) throws IllegalArgumentException{
         try{
-            DiaryDataModel ddm = new DiaryDataModel();
+            DiaryModel ddm = new DiaryModel();
             ddm.setId(rs.getLong("Id"));
             ddm.setTagType(stringToTagType(rs.getString("tagType")));
             ddm.setMainString(rs.getString("mainString"));

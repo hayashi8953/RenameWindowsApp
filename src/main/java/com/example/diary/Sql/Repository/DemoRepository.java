@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.DiaryModel;
 import com.example.diary.Sql.DiaryRowMapper;
 
 @Repository
@@ -33,10 +33,10 @@ public class DemoRepository extends BaseRepository {
     }
 
     // 直近30日を取り出すセレクト文
-    public List<DiaryDataModel> select30days() throws DataAccessException, IllegalArgumentException {
+    public List<DiaryModel> select30days() throws DataAccessException, IllegalArgumentException {
         DiaryRowMapper rowMapper = new DiaryRowMapper();
         System.out.println("DiarySelectRepository.select30daysを通過");
-        List<DiaryDataModel> list = jdbcTemplate.query(
+        List<DiaryModel> list = jdbcTemplate.query(
                 "SELECT * FROM MyDiary WHERE dateTime >= CURRENT_TIMESTAMP - 30 DAY ORDER BY emphasis DESC, Id DESC",
                 rowMapper);
         System.out.println("select30days完了");

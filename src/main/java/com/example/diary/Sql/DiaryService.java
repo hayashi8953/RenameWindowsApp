@@ -6,7 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.DiaryModel;
 import com.example.diary.Models.SearchData;
 import com.example.diary.Sql.Repository.DemoRepository;
 import com.example.diary.Sql.Repository.DiaryInsUpdRepository;
@@ -29,7 +29,7 @@ public class DiaryService {
 
     // 受け取ったモデルクラスを調整して、
     // リポジトリクラスのインサートメソッドを起動する
-    public DiaryDataModel exeInsert(DiaryDataModel ddm) throws DataAccessException {
+    public DiaryModel exeInsert(DiaryModel ddm) throws DataAccessException {
         LocalDateTime now = LocalDateTime.now();
         ddm.setDateTime(now);
         dir.insert(ddm);
@@ -37,7 +37,7 @@ public class DiaryService {
     }
 
     // リポジトリクラスのアップデートメソッドを起動する
-    public void exeUpdate(DiaryDataModel ddm) throws DataAccessException {
+    public void exeUpdate(DiaryModel ddm) throws DataAccessException {
         dir.update(ddm);
     }
 
@@ -47,22 +47,22 @@ public class DiaryService {
     }
 
     // リポジトリクラスの一件セレクト文を起動する
-    public DiaryDataModel exeSelectOfOne(Long num) throws DataAccessException {
+    public DiaryModel exeSelectOfOne(Long num) throws DataAccessException {
         return dsr.selectOfOne(num);
     }
 
     // リポジトリクラスの直近30日のセレクト文を起動する
-    public List<DiaryDataModel> exeSelect30days() throws DataAccessException {
+    public List<DiaryModel> exeSelect30days() throws DataAccessException {
         return dsr.select30days();
     }
 
     // リポジトリクラスの直近30日のセレクト文を起動する
-    public List<DiaryDataModel> exeSelectAll() throws DataAccessException {
+    public List<DiaryModel> exeSelectAll() throws DataAccessException {
         return dsr.selectAll();
     }
 
     // リポジトリクラスの直近30日のセレクト文を起動する
-    public List<DiaryDataModel> exeSelectAll(SearchData sData)
+    public List<DiaryModel> exeSelectAll(SearchData sData)
             throws DataAccessException {
         return dsr.selectAll(sData);
     }

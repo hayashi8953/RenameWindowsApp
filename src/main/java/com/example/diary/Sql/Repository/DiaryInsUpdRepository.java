@@ -4,7 +4,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.diary.Models.DiaryDataModel;
+import com.example.diary.Models.DiaryModel;
 
 //  Repositoryクラス
 @Repository
@@ -16,7 +16,7 @@ public class DiaryInsUpdRepository extends BaseRepository{
     }
 
     //  インサート文を行う
-    public void insert(DiaryDataModel ddm) throws DataAccessException, NullPointerException{
+    public void insert(DiaryModel ddm) throws DataAccessException{
         System.out.printf("DiaryInsUpdRepository.insertを通過%n%s", ddm.getAllString());
         jdbcTemplate.update("INSERT INTO MyDiary (tagType, mainString, dateTime, emphasis) VALUES (?, ?, ?, ?)",
             ddm.getTagType().getValue(), ddm.getMainString(), ddm.getDateTime(), ddm.getEmphasis());
@@ -24,7 +24,7 @@ public class DiaryInsUpdRepository extends BaseRepository{
     }
 
     //  アップデート文を行う
-    public void update(DiaryDataModel ddm) throws DataAccessException, NullPointerException{
+    public void update(DiaryModel ddm) throws DataAccessException{
         System.out.printf("DiaryInsUpdRepository.updateを通過%n%s", ddm.getAllString());
         jdbcTemplate.update("UPDATE MyDiary SET tagType = ?, mainString = ?, emphasis = ? WHERE Id = ?",
             ddm.getTagType().getValue(), ddm.getMainString(), ddm.getEmphasis(), ddm.getId());
