@@ -6,7 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
+// 便利な機能を有するstaticクラス
 public class utilStatic {
+
+    // 2023年から現在の月までを"20XX-XX-XX"で配列にして返す
     public static LocalDate[] yearDaysList(){
         List<LocalDate> days = new LinkedList<>();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
